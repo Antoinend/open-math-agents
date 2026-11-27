@@ -584,7 +584,9 @@ private lemma sparse : OMA.R_Erdos165_erdos_165_variants_conjecture_R1.H2 := by
   have hL0 : 0 < Real.log (k : ℝ) := by linarith
   have hslack := (div_le_iff₀ hδ).mp ((le_max_right _ _).trans hM)
   have hlog2 : Real.log (2 : ℝ) ≤ 1 := by
-    simpa using Real.log_le_sub_one_of_pos (by norm_num : (0 : ℝ) < 2)
+    calc
+      Real.log (2 : ℝ) ≤ 2 - 1 := Real.log_le_sub_one_of_pos (by norm_num)
+      _ = 1 := by norm_num
   have hxlog : 1 ≤ Real.log ((k : ℝ) / 2) := by
     rw [Real.log_div hk0.ne' (by norm_num)]
     linarith
